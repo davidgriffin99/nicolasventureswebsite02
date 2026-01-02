@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+    <header>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+    </header>
+    
+    <nav>
+        <ul>
+            {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <main class="main-content">
+            {{ block "main" . }}{{ end }}
+        </main>
+        
+        <aside class="sidebar">
+            <div class="impact-message">
+                <div class="impact-number">5</div>
+                <div class="impact-text">
+                    The number of people with special needs we've paid for work.<br>
+                    How many have you worked with?
+                </div>
+            </div>
+            <!-- Additional sidebar content can be added here -->
+        </aside>
+    </div>
+</body>
+</html>
